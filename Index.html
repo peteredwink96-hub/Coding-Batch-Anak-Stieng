@@ -1,11 +1,187 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>I LOVE YOU JESSICA — Surprise</title>
+  <style>
+    :root{
+      --bg1: #ffdde1;
+      --bg2: #fbc2eb;
+      --accent: #ff4d6d;
+      --flower: #ffb3c6;
+      --text: #65032a;
+    }
+    html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+    body{
+      display:flex;align-items:center;justify-content:center;
+      background: radial-gradient(circle at 10% 10%, rgba(255,255,255,0.25), transparent 10%), linear-gradient(120deg,var(--bg1),var(--bg2));
+      overflow:hidden;color:var(--text);
+    }
+    .stage{position:relative;width:100%;height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:2rem;box-sizing:border-box}
+
+    h1{
+      font-size:clamp(32px,8vw,96px);
+      letter-spacing:6px;text-align:center;margin:0 0 12px 0;
+      transform:translateZ(0);
+      background: linear-gradient(90deg,#fff 0%, rgba(255,255,255,0.2) 40%, rgba(255,255,255,0.02) 100%), linear-gradient(90deg,var(--accent),#ff9ab3 60%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      text-shadow: 0 6px 20px rgba(101,3,42,0.15);
+    }
+
+    /* Heart beat effect */
+    .heart-wrap{display:flex;gap:10px;align-items:center}
+    .word-heart{display:inline-block;position:relative}
+    .word-heart .heart{
+      width:28px;height:28px;display:inline-block;margin-left:8px;vertical-align:middle;
+      transform-origin:center;animation:beat 1s infinite ease-in-out 0.2s;
+    }
+    @keyframes beat{
+      0%{transform:scale(1)}
+      25%{transform:scale(1.18)}
+      50%{transform:scale(1)}
+      75%{transform:scale(1.12)}
+      100%{transform:scale(1)}
+    }
+
+    p.lead{margin:0;font-size:clamp(14px,2.8vw,20px);opacity:0.9}
+
+    /* floating elements container */
+    .float-layer{position:absolute;inset:0;pointer-events:none}
+
+    .btns{position:relative;margin-top:18px;z-index:9}
+    .btn{background:transparent;border:2px solid rgba(255,255,255,0.35);padding:10px 14px;border-radius:999px;backdrop-filter: blur(6px);cursor:pointer;color:white;font-weight:700}
+    .btn:active{transform:translateY(1px)}
+
+    /* flowers/hearts animation (template) */
+    .floating{
+      position:absolute;will-change:transform,opacity;pointer-events:none;z-index:1;
+      transform-origin:center center;
+      animation:floatUp linear forwards;
+    }
+    @keyframes floatUp{
+      0%{opacity:0;transform:translateY(0) scale(0.8) rotate(0)}
+      10%{opacity:1}
+      100%{opacity:0;transform:translateY(-120vh) scale(1.15) rotate(360deg)}
+    }
+
+    /* subtle ground flowers */
+    .ground{
+      position:absolute;left:50%;transform:translateX(-50%);bottom:-6vh;display:flex;gap:10px;z-index:0;opacity:0.9;filter:drop-shadow(0 10px 12px rgba(0,0,0,0.06))
+    }
+    .ground .bud{width:22px;height:22px}
+
+    /* responsive touches */
+    @media (max-width:520px){
+      .btn{padding:8px 12px}
+    }
+  </style>
 </head>
 <body>
-    Anak stieng
+  <div class="stage">
+    <div style="z-index:9;text-align:center">
+      <div class="heart-wrap">
+        <h1 class="word-heart">I <span style="font-weight:900;letter-spacing:3px">LOVE</span> YOU JESSICA
+          <svg class="heart" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M12 21s-8-5.4-8-10.2C4 6.7 6.7 4 9.8 4c1.6 0 3.1.8 4.2 2 1.1-1.2 2.6-2 4.2-2C17.3 4 20 6.7 20 10.8 20 15.6 12 21 12 21z"/>
+          </svg>
+        </h1>
+      </div>
+      <p class="lead">Bunga dan cinta untukmu — klik atau ketuk layar untuk menaburkan lebih banyak hati & bunga 💖</p>
+      <div class="btns">
+        <button class="btn" id="btn-spray">Sprinkle Love</button>
+      </div>
+    </div>
+
+    <div class="float-layer" id="layer"></div>
+
+    <div class="ground" aria-hidden="true">
+      <!-- decorative ground flowers -->
+      <svg class="bud" viewBox="0 0 24 24"><path fill="#ff9ab3" d="M12 2c1.1 0 2 .9 2 2 0 .6-.3 1.1-.8 1.5.6.4 1.1 1 1.3 1.7.4 1.3 0 2.6-.9 3.4-.8.8-2 1.1-3.2.8-.4-.1-.8-.3-1.1-.5-.3.2-.7.4-1.1.5-1.2.3-2.4 0-3.2-.8-.9-.8-1.3-2.1-.9-3.4.3-.7.8-1.3 1.3-1.7C6.3 5.1 6 4.6 6 4c0-1.1.9-2 2-2s2 .9 2 2c0 .6-.3 1.1-.8 1.5.6.4 1.1 1 1.3 1.7.4 1.3 0 2.6-.9 3.4-.8.8-2 1.1-3.2.8"/></svg>
+      <svg class="bud" viewBox="0 0 24 24"><path fill="#ffd7e6" d="M12 2c1.1 0 2 .9 2 2 0 .6-.3 1.1-.8 1.5.6.4 1.1 1 1.3 1.7.4 1.3 0 2.6-.9 3.4-.8.8-2 1.1-3.2.8-.4-.1-.8-.3-1.1-.5-.3.2-.7.4-1.1.5-1.2.3-2.4 0-3.2-.8-.9-.8-1.3-2.1-.9-3.4.3-.7.8-1.3 1.3-1.7C6.3 5.1 6 4.6 6 4c0-1.1.9-2 2-2s2 .9 2 2c0 .6-.3 1.1-.8 1.5.6.4 1.1 1 1.3 1.7.4 1.3 0 2.6-.9 3.4-.8.8-2 1.1-3.2.8"/></svg>
+      <svg class="bud" viewBox="0 0 24 24"><path fill="#ffb3c6" d="M12 2c1.1 0 2 .9 2 2 0 .6-.3 1.1-.8 1.5.6.4 1.1 1 1.3 1.7.4 1.3 0 2.6-.9 3.4-.8.8-2 1.1-3.2.8-.4-.1-.8-.3-1.1-.5-.3.2-.7.4-1.1.5-1.2.3-2.4 0-3.2-.8-.9-.8-1.3-2.1-.9-3.4.3-.7.8-1.3 1.3-1.7C6.3 5.1 6 4.6 6 4c0-1.1.9-2 2-2s2 .9 2 2c0 .6-.3 1.1-.8 1.5.6.4 1.1 1 1.3 1.7.4 1.3 0 2.6-.9 3.4-.8.8-2 1.1-3.2.8"/></svg>
+    </div>
+  </div>
+
+  <script>
+    // Helper: random number in range
+    const rnd = (min,max)=> Math.random()*(max-min)+min;
+
+    const layer = document.getElementById('layer');
+    const btn = document.getElementById('btn-spray');
+
+    // Templates: SVG strings for heart and flower
+    const heartSVG = (size, color) => `
+      <svg viewBox="0 0 24 24" width="${size}" height="${size}" class="floating" style="color:${color}">
+        <path fill="currentColor" d="M12 21s-8-5.4-8-10.2C4 6.7 6.7 4 9.8 4c1.6 0 3.1.8 4.2 2 1.1-1.2 2.6-2 4.2-2C17.3 4 20 6.7 20 10.8 20 15.6 12 21 12 21z"/>
+      </svg>`;
+
+    const flowerSVG = (size) => `
+      <svg viewBox="0 0 24 24" width="${size}" height="${size}" class="floating" style="filter:drop-shadow(0 8px 8px rgba(0,0,0,0.08))">
+        <g transform="translate(2 2)">
+          <circle cx="8" cy="8" r="2.4" fill="#ffd7e6" />
+          <path d="M8 0c1 0 1.6 1.2 2.6 2 1 .8 2.6 1.2 2.6 2.6s-1.6 1.8-2.6 2.6C9.6 9.6 9 10.8 8 10.8s-1.6-1.2-2.6-2C4.4 7.9 2.8 7.5 2.8 6.1S4.4 4.9 5.4 4.1C6.4 3.3 7 2 8 2z" fill="#ff9ab3"/>
+        </g>
+      </svg>`;
+
+    function spawn(type='heart'){
+      const size = Math.round(rnd(18,56));
+      const left = rnd(6,94);
+      const elHTML = type === 'heart' ? heartSVG(size, `hsl(${rnd(0,350)},80%,60%)`) : flowerSVG(size);
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = elHTML.trim();
+      const el = wrapper.firstChild;
+      layer.appendChild(el);
+
+      // position and randomize animation duration/delay/rotation
+      el.style.left = left + 'vw';
+      el.style.bottom = rnd(-6,16) + 'vh';
+      const dur = rnd(5,12);
+      const delay = rnd(0,0.4);
+      const rot = rnd(-40,40);
+      el.style.animationDuration = dur + 's';
+      el.style.animationDelay = delay + 's';
+      el.style.transform = `translateY(0) rotate(${rnd(-30,30)}deg)`;
+
+      // gentle sway via CSS transition (added with small timeout to trigger)
+      setTimeout(()=>{
+        el.style.transition = `transform ${dur}s cubic-bezier(.2,.8,.2,1)`,
+        el.style.transform = `translateY(-${rnd(80,140)}vh) rotate(${rot}deg) scale(${rnd(0.9,1.2)})`;
+        el.style.opacity = '0';
+      }, 30 + Math.random()*150);
+
+      // remove after animation
+      setTimeout(()=> el.remove(), (dur+delay+0.5)*1000);
+    }
+
+    // Spray function: generate many particles
+    function spray(count=18){
+      for(let i=0;i<count;i++){
+        setTimeout(()=> spawn(Math.random()>0.45? 'heart':'flower'), i*45 + Math.random()*180);
+      }
+    }
+
+    // initial gentle sprinkling
+    spray(10);
+
+    // click/tap anywhere to sprinkle
+    document.body.addEventListener('click', ()=> spray(16));
+    btn.addEventListener('click', (e)=>{ e.stopPropagation(); spray(28); });
+
+    // accessibility: reduce motion respects
+    const mq = window.matchMedia('(prefers-reduced-motion:reduce)');
+    if(mq.matches){
+      document.querySelectorAll('.floating').forEach(el=> el.style.animationDuration = '1s');
+      document.body.style.animation = 'none';
+    }
+
+    // small touch: pulsate the heart in the heading on interval
+    const headingHeart = document.querySelector('.word-heart .heart');
+    setInterval(()=>{
+      headingHeart.animate([
+        {transform: 'scale(1)'},{transform:'scale(1.18)'},{transform:'scale(1)'}
+      ],{duration:900,iterations:1});
+    },1500);
+  </script>
 </body>
 </html>
